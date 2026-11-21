@@ -66,7 +66,7 @@ with report:
                 sb.table('complaints').insert({'id':cid,'location':location.strip(),'description':description.strip(),'status':'Pending','photo_path':path,'latitude':st.session_state.pin['lat'],'longitude':st.session_state.pin['lng']}).execute()
                 st.success('Complaint submitted!'); st.code(cid); st.session_state.pin=None
           
-           except Exception as e:
+            except Exception as e:
                if path:
                    try:
                      sb.storage.from_('complaint-photos').remove([path])
