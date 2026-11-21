@@ -12,6 +12,8 @@ def setting(k):
     try: return os.getenv(k) or st.secrets.get(k,'')
     except Exception: return os.getenv(k,'')
 url, key, password = (setting(k) for k in ('SUPABASE_URL','SUPABASE_SERVICE_ROLE_KEY','ADMIN_PASSWORD'))
+st.write("Supabase URL configured:", bool(url))
+st.write("Supabase key configured:", bool(key))
 if not url or not key:
     st.error('Configure Supabase credentials first. Read README.md.'); st.stop()
 @st.cache_resource
