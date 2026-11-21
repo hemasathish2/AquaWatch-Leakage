@@ -65,14 +65,14 @@ with report:
                     sb.storage.from_('complaint-photos').upload(path,photo.getvalue(),file_options={'content-type':'image/png' if ext=='png' else 'image/jpeg'})
                 sb.table('complaints').insert({'id':cid,'location':location.strip(),'description':description.strip(),'status':'Pending','photo_path':path,'latitude':st.session_state.pin['lat'],'longitude':st.session_state.pin['lng']}).execute()
                 st.success('Complaint submitted!'); st.code(cid); st.session_state.pin=None
-            except Exception as e:
-               except Exception as e:
+          
+           except Exception as e:
                if path:
                    try:
                      sb.storage.from_('complaint-photos').remove([path])
                    except Exception:
                       pass
-    st.error(f'Could not save complaint: {e}')
+               st.error(f'Could not save complaint: {e}')
 with track:
     cid=st.text_input('Complaint tracking ID')
     if st.button('Track status'):
